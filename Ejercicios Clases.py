@@ -23,7 +23,7 @@ listaProductos.append(Cereal)
 
 print("Gestión de productos")
 
-"""while True:
+while True:
     print("\nSeleccione una opcion")
     print("1. Añadir productos")
     print("2. Vender productos")
@@ -57,7 +57,7 @@ print("Gestión de productos")
     
     if opcion == 4:
         print("Hasta luego")
-        break   """
+        break   
 
 
 #Quieres simular un sistema bancario sencillo. Cada cliente debe poder tener un número de cuenta, un titular y un saldo.
@@ -126,7 +126,7 @@ while True:
             nuevoCliente = sistemaBancario(nuevoNumeroCuenta, nuevoTitular, 0)
             listaClientes.append(nuevoCliente)
             break
-        
+
     if opcion == 5:
         print("Hasta luego")
         break
