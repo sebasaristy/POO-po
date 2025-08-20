@@ -26,6 +26,7 @@ while True:
     nuevaPersona = persona(nombrePersona)
 
     print(f'\n{nuevaPersona.nombre}, sus numeros son {nuevaPersona.numeros}')
+    break
 
     
 class Perro:
