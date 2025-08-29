@@ -134,7 +134,7 @@ while True:
 #Vas a crear un pequeño sistema de calificaciones con las clases Estudiante y Curso. 
 #Cada una deberá definirse con su propio constructor y métodos que operen sobre los atributos de instancia.
 
-class Estudiantes:
+"""class Estudiantes:
     def __init__(self, nombre: str, edad: int, calificaciones: list[float]):
         self.nombre = nombre
         self.edad = edad
@@ -185,3 +185,54 @@ s3.calcular_promedio()
 
 curso1.promedio_general()
 curso1.mostrar_estudiantes()
+"""
+
+class libro:
+    def __init__(self, titulo, autor, año, genero):
+        self.titulo = titulo
+        self.autor = autor
+        self.año = año
+        self.genero = genero
+
+def buscar_libro(titulo, lista):
+    existe = False
+    for libros in lista:
+        if libros.titulo in lista:
+            existe = True
+    return existe
+
+listaLibros = []
+
+while True:
+    print("Seleccione: ")
+    print("1. Registrar libro")
+    print("2. ")
+
+    opcion = int(input(": "))
+    if opcion == 1:
+        titulo = input("Ingresar titulo: ")
+        autor = input("Titulo: ")
+        fecha = int(input("Fecha: "))
+        genero = input("Genero: ")
+        libroNuevo = libro(titulo, autor, fecha, genero)
+        listaLibros.append(libroNuevo)
+    
+    elif opcion == 2:
+        for libros in listaLibros:
+            print(libros.autor)
+            print(libros.titulo)
+    
+    elif opcion == 3: 
+        tituloBuscar = ("Titulo: ")
+        encontrarLibro = buscar_libro(tituloBuscar, listaLibros)
+        if encontrarLibro == True:
+            print("Existe")
+        else: 
+            print("No existe")
+
+    elif opcion == 4:
+        print(f'La cantidad de libros es {len(listaLibros)}')
+
+    elif opcion == 0:
+        print("Chao")
+        break
