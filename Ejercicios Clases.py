@@ -131,61 +131,7 @@ while True:
         print("Hasta luego")
         break"""
 
-#Vas a crear un pequeño sistema de calificaciones con las clases Estudiante y Curso. 
-#Cada una deberá definirse con su propio constructor y métodos que operen sobre los atributos de instancia.
 
-"""class Estudiantes:
-    def __init__(self, nombre: str, edad: int, calificaciones: list[float]):
-        self.nombre = nombre
-        self.edad = edad
-        self.calificaciones = calificaciones
-        self.promedio = 0
-
-    def calcular_promedio(self):
-        j = 0
-        for i in range (0,len(self.calificaciones)):
-            j = j + (self.calificaciones[i])
-        promedio = j/len(self.calificaciones)
-        self.promedio = promedio
-    
-    def mostrar_info(self):
-        print(f'Estudiante: {self.nombre}(Edad: {self.edad}) -- Promedio: {self.promedio: .2f}')
-    
-
-class curso:
-    def __init__(self, nombre: str):
-        self.nombre = nombre
-        self.estudiantes = []
-
-    def agregar_estudiante(self, estudiante):
-        self.estudiantes.append(estudiante)
-
-    def promedio_general(self):
-        suma = 0
-        for k in range(0, len(self.estudiantes)):
-            suma = suma + curso1.estudiantes[k].promedio
-            promGen = suma/len(self.estudiantes)
-        print(f'Promedio general: {promGen: .2f}')
-    
-    def mostrar_estudiantes(self):
-        for j in range (0, len(self.estudiantes)):
-            Estudiantes.mostrar_info(self.estudiantes[j])
-
-s1 = Estudiantes("Ana", 20, [4.5, 3.7, 5.0])
-s2 = Estudiantes("Luis", 22, [4.0, 4.2, 3,8])
-s3 = Estudiantes("Maria", 19, [5.0, 5.0, 4.9])
-curso1 = curso("Algebra Lineal")
-curso1.agregar_estudiante(s1)
-curso1.agregar_estudiante(s2)
-curso1.agregar_estudiante(s3)
-
-s1.calcular_promedio()
-s2.calcular_promedio()
-s3.calcular_promedio()
-
-curso1.promedio_general()
-curso1.mostrar_estudiantes()
-"""
 
 class libro:
     def __init__(self, titulo, autor, año, genero):
@@ -236,3 +182,4 @@ while True:
     elif opcion == 0:
         print("Chao")
         break
+
