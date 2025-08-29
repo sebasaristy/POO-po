@@ -99,6 +99,5 @@ estudiante3 = Estudiantes("Sebastian", 18, 3.8)
 clase1.agregar_estudiante(estudiante1)
 clase1.agregar_estudiante(estudiante2)
 clase1.agregar_estudiante(estudiante3)
-
-print(clase1.mostrar_info())
+clase1.mostrar_info()
 print(clase1.promedio())
