@@ -133,7 +133,7 @@ while True:
 
 
 
-class libro:
+"""class libro:
     def __init__(self, titulo, autor, año, genero):
         self.titulo = titulo
         self.autor = autor
@@ -181,5 +181,79 @@ while True:
 
     elif opcion == 0:
         print("Chao")
-        break
+        break"""
 
+"""class Persona: 
+    def __init__(self, nombre, cedula, ti):
+        self.nombre = nombre 
+        self.__cedula = cedula
+        self.__ti = ti
+
+    def obtener_documento(self):
+        if self.__cedula is not None:
+            return self.__cedula
+        else: 
+            return self.__ti
+    
+persona1 = Persona("juan", 111, None)
+persona2 = Persona("jose", None, 222)
+
+print("El nombre de la persona es", persona1.nombre)
+print("La cedula de la persona es", persona1.obtener_documento())
+
+print("El nombre de la persona es", persona2.nombre)
+print("El documento de la persona es", persona2.obtener_documento())"""
+
+class Dispositivo: 
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.estado = False
+        
+    def encender(self):
+        self.estado = True
+        print(f'{self.nombre} ahora está encendido')
+
+    def apagar(self):
+        self.estado = False
+        print(f'{self.nombre} ahora está apagado')
+
+class Espacio: 
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.__dispositivos = []
+
+    def agregar_d(self, dispositivo):
+        self.__dispositivos.append(dispositivo)
+        print(f'Dispositivo agregado correctamente ({dispositivo.nombre})')
+
+    def mostrar_d(self):
+        for dispositivo in self.__dispositivos:
+            print(dispositivo.nombre)
+
+class Casa: 
+    def __init__(self, direccion):
+        self.direccion = direccion
+        self.__espacios = []
+
+    def agregar_e(self, nombre):
+        self.__espacios.append(Espacio(nombre))
+        print("Espacio agregado")
+
+    def buscar_espacio(self, nombre):
+        for espacio in self.__espacios:
+            if espacio.nombre == nombre:
+                return espacio
+        return None
+
+    def mostrar_e(self):
+        for espacio in self.__espacios:
+            print(espacio.nombre)
+
+miCasa = Casa("Calle 81b")
+television = Dispositivo("Television")
+miCasa.agregar_e("Cocina")
+miCasa.agregar_e("Habitacion")
+miCasa.agregar_e("Baño")
+miCasa.buscar_espacio("Habitacion").agregar_d(television)
+
+miCasa.buscar_espacio("Habitacion").mostrar_d()

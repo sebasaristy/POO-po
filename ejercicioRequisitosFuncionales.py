@@ -2,6 +2,12 @@ class Motor:
     def __init__(self):
         self.estado = False
 
+    def encender_motor(self):
+        self.estado = True
+    
+    def apagar_motor(self):
+        self.estado = False
+
 class Vehiculo:
     def __init__(self, tipo, placa, existe):
         self.tipo = tipo
@@ -10,7 +16,11 @@ class Vehiculo:
         self.motor = Motor()
     
     def encender_motor(self):
-        hola = 0
+        self.estado = True
+    
+    def apagar_motor(self):
+        self.estado = False
+
 
 
 class Flota:
