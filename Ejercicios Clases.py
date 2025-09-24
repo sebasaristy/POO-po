@@ -1,4 +1,4 @@
-"""#Una tienda quiere llevar el control de los productos que vende. Por cada producto, necesita guardar el nombre, el precio y la cantidad disponible.
+#Una tienda quiere llevar el control de los productos que vende. Por cada producto, necesita guardar el nombre, el precio y la cantidad disponible.
 #El sistema debe permitir vender cierta cantidad de productos y mostrar cuántas unidades quedan. Si no hay suficientes unidades, debe mostrar un mensaje de advertencia.
 
 class tiendaProductos:
@@ -129,11 +129,11 @@ while True:
 
     if opcion == 5:
         print("Hasta luego")
-        break"""
+        break
 
 
 
-"""class libro:
+class libro:
     def __init__(self, titulo, autor, año, genero):
         self.titulo = titulo
         self.autor = autor
@@ -181,9 +181,9 @@ while True:
 
     elif opcion == 0:
         print("Chao")
-        break"""
+        break
 
-"""class Persona: 
+class Persona: 
     def __init__(self, nombre, cedula, ti):
         self.nombre = nombre 
         self.__cedula = cedula
@@ -202,7 +202,7 @@ print("El nombre de la persona es", persona1.nombre)
 print("La cedula de la persona es", persona1.obtener_documento())
 
 print("El nombre de la persona es", persona2.nombre)
-print("El documento de la persona es", persona2.obtener_documento())"""
+print("El documento de la persona es", persona2.obtener_documento())
 
 class Dispositivo: 
     def __init__(self, nombre):
