@@ -51,7 +51,7 @@ class Carrito:
 class Pedido(Carrito):
     def __init__(self, cliente):
         super().__init__()
-        self.idPedido = (random.randint(100,999))
+        self.idPedido = (random.randint(1000,9999))
         self.cliente = cliente
 
     def mostrar_factura(self):
