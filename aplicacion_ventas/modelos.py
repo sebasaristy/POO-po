@@ -33,7 +33,7 @@ class Cliente:
         try:
             prueba = int(self.id)
         except:
-            raise ClientesError("Error en la identificacion del cliente. ")
+            raise ClientesError("Error en la identificacion del cliente.")
 
 
 @dataclass
