@@ -1,8 +1,23 @@
 import random
-class Productos():
-    def __init__(self, nombre):
+from typing import List, ClassVar, Set
+from abc import ABC, abstractmethod
+from dataclases import dataclass
+
+class Productos:
+    def __init__(self, nombre, precio, talla, color):
         self.nombre = nombre 
-        self.listaProductos = []
+        self.precio = precio
+        self.talla = talla
+        self.color = color
+
+class Tienda:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.listaProductos = [Productos]
+
+    def agregar_productos(self, producto = Productos):
+        self.listaProductos.append(producto)
+        print(f'El producto ha sido agregado exitosamente')
 
     def mostrar_productos(self):
         contador = 0
@@ -10,21 +25,28 @@ class Productos():
             contador += 1
             print(f'Producto {contador}: {i.nombre}: {i.precio}$, Talla: {i.talla}, Color: {i.color}')
 
+    def crear_producto(self, nNombre, nPrecio, nTalla, nColor):
+        categoria = input("Ingrese la categoria que desea añadir (Ropa/Tenis): ").lower()
+        nNombre = input("Ingrese el nombre: ")
+        nPrecio = int(input("Ingrese el precio"))
+        nTalla = input("Ingrese la talla (S/M/L): ")
+        nColor = input("Ingrese el color: ")
+        if categoria == "ropa":
+            nProducto = Ropa(nNombre, nPrecio, nTalla, nColor)
+            print(f'El producto ha sido creado exitosamente. ({nProducto.nombre})')
+            
+        if categoria == "tenis":
+            nProducto = Tenis(nNombre, nPrecio, nTalla, nColor)
+            print(f'El producto ha sido creado exitosamente. ({nProducto.nombre})')
+
 
 class Ropa(Productos):
     def __init__(self, nombre, precio, talla, color):
-        super().__init__(nombre)
-        self.precio = precio
-        self.talla = talla
-        self.color = color
-
+        super().__init__(nombre, precio, talla, color)
 
 class Tenis(Productos):
     def __init__(self, nombre, precio, talla, color):
-        super().__init__(nombre)
-        self.precio = precio
-        self.talla = talla 
-        self.color = color
+        super().__init__(nombre, precio, talla, color)
 
 class cliente:
     def __init__(self, nombre, correo):
@@ -48,9 +70,8 @@ class Carrito:
             acumulador = acumulador + i.precio
         return acumulador
 
-class Pedido(Carrito):
+class Pedido():
     def __init__(self, cliente):
-        super().__init__()
         self.idPedido = (random.randint(1000,9999))
         self.cliente = cliente
 
@@ -70,57 +91,10 @@ tenis = Tenis("tenis", 6000, "38", "Naranja")
 chanclas = Tenis("chanclas", 6000, "38", "Azul")
 
 
-producto0.listaProductos.append(camisa)
-producto0.listaProductos.append(buzo)
-producto0.listaProductos.append(chaqueta)
-producto0.listaProductos.append(botas)
-producto0.listaProductos.append(tenis)
-producto0.listaProductos.append(chanclas)
-
 print("Ingrese su nombre y correo para crearle su carrito:")
 nombreNuevo = input("Nombre: ")
 correoNuevo = input("Correo: ")
 clienteNuevo = cliente(nombreNuevo, correoNuevo)
 
-while True:
-    print("\nBienvenido a la Tienda")
-    print("----------------------------------------------------")
-    print("Estos son nuestros productos")
-    producto0.mostrar_productos()
-    print("----------------------------------------------------")
-    print("¿Que desea hacer?")
-    print("1. Agregar producto al carrito")
-    print("2. Eliminar producto del carrito")
-    print("3. Mostrar carrito")
-    print("4. Calcular total del carrito")
-    print("5. Realizar pedido")
-    print("0. Salir")
-    opcion = int(input("Ingrese su opcion: "))
 
-    if opcion == 1:
-        nombreAgregar = input("Ingrese el nombre del producto que desea agregar al carrito: ").lower()
-        for j in producto0.listaProductos:
-            if j.nombre == nombreAgregar:
-                clienteNuevo.carrito.listaproductos.append(j)
-    
-    if opcion == 2:
-        nombreEliminar = input("Ingrese el nombre del producto que desea eliminar del carrito: ").lower()
-        for j in producto0.listaProductos:
-            if j.nombre == nombreEliminar:
-                clienteNuevo.carrito.listaproductos.remove(j)
-    
-    if opcion == 3:
-        clienteNuevo.carrito.mostrar_carrito() 
-    
-    if opcion == 4:
-        print(f'\nEl total es de {clienteNuevo.carrito.calcular_total()}')
-    
-    if opcion == 5:
-        pedidoNuevo = Pedido(clienteNuevo)
-        pedidoNuevo.mostrar_factura() 
-        print(f'Y el total es de {clienteNuevo.carrito.calcular_total()}')
-
-    if opcion == 0: 
-        print("Muchas gracias por la visita")
-        break
         
