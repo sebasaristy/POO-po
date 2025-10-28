@@ -1,6 +1,5 @@
 import random
-from typing import List, ClassVar, Set
-from abc import ABC, abstractmethod
+
 
 class Productos:
     def __init__(self, nombre, precio, talla, color):
