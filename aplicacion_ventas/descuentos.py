@@ -26,7 +26,6 @@ class DescuentoCompuesto(Descuento):
 
     def aplicar(self, cliente: Cliente, linea: LineaFactura) -> float:
         try:
-
             return sum(e.aplicar(cliente, linea) for e in self.estrategias)
         except ValueError:
             print("Valores incorrectos")
