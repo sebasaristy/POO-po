@@ -1,8 +1,7 @@
 from dataclasses import dataclass, field, asdict
 from typing import List
 
-
-@dataclass
+"""@dataclass
 class Persona:
     nombre: str
     edad: int = field(default=36)
@@ -31,5 +30,4 @@ class Grupo:
 
 
 grupo1 = Grupo()
-grupo1.personas.append(persona1)
-print(grupo1.personas)
+grupo1.personas.append(persona1)"""

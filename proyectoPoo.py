@@ -1,7 +1,6 @@
 import random
 from typing import List, ClassVar, Set
 from abc import ABC, abstractmethod
-from dataclases import dataclass
 
 class Productos:
     def __init__(self, nombre, precio, talla, color):
@@ -13,31 +12,35 @@ class Productos:
 class Tienda:
     def __init__(self, nombre):
         self.nombre = nombre
-        self.listaProductos = [Productos]
+        self.listaProductos = []
 
-    def agregar_productos(self, producto = Productos):
+    def agregar_productos(self, producto):
         self.listaProductos.append(producto)
         print(f'El producto ha sido agregado exitosamente')
 
     def mostrar_productos(self):
-        contador = 0
-        for i in self.listaProductos:
-            contador += 1
-            print(f'Producto {contador}: {i.nombre}: {i.precio}$, Talla: {i.talla}, Color: {i.color}')
-
-    def crear_producto(self, nNombre, nPrecio, nTalla, nColor):
+        for i in range (0, len(self.listaProductos)):
+            print(f'{self.listaProductos[i].nombre.capitalize()}, Precio: {self.listaProductos[i].precio}, Talla: {self.listaProductos[i].talla}, Color: {self.listaProductos[i].color}')
+    
+    def crear_producto(self):
         categoria = input("Ingrese la categoria que desea añadir (Ropa/Tenis): ").lower()
-        nNombre = input("Ingrese el nombre: ")
-        nPrecio = int(input("Ingrese el precio"))
-        nTalla = input("Ingrese la talla (S/M/L): ")
-        nColor = input("Ingrese el color: ")
         if categoria == "ropa":
+            nNombre = input("Ingrese el nombre: ")
+            nPrecio = int(input("Ingrese el precio: "))
+            nTalla = input("Ingrese la talla (S/M/L): ").capitalize()
+            nColor = input("Ingrese el color: ")
             nProducto = Ropa(nNombre, nPrecio, nTalla, nColor)
-            print(f'El producto ha sido creado exitosamente. ({nProducto.nombre})')
+            print(f'El producto ha sido creado exitosamente. ({nProducto.nombre.capitalize()})')
+            self.listaProductos.append(nProducto)
             
         if categoria == "tenis":
+            nNombre = input("Ingrese el nombre: ")
+            nPrecio = int(input("Ingrese el precio: "))
+            nTalla = int(input("Ingrese la talla (numeros): "))
+            nColor = input("Ingrese el color: ")
             nProducto = Tenis(nNombre, nPrecio, nTalla, nColor)
-            print(f'El producto ha sido creado exitosamente. ({nProducto.nombre})')
+            print(f'El producto ha sido creado exitosamente. ({nProducto.nombre.capitalize()})')
+            self.listaProductos.append(nProducto)
 
 
 class Ropa(Productos):
@@ -59,10 +62,8 @@ class Carrito:
         self.listaproductos = []
     
     def mostrar_carrito(self):
-        contador = 0
-        for i in self.listaproductos:
-            contador += 1
-            print(f'Producto {contador}: {i.nombre}: {i.precio}$, Talla: {i.talla}, Color: {i.color}')
+        for i in range (0, len(self.listaProductos)):
+            print(f'{self.listaProductos[i].nombre.capitalize()}, Precio: {self.listaProductos[i].precio}, Talla: {self.listaProductos[i].talla}, Color: {self.listaProductos[i].color}')
 
     def calcular_total(self):
         acumulador = 0
@@ -79,22 +80,25 @@ class Pedido():
         print(f'{self.cliente.nombre}, su pedido tiene id {self.idPedido}. Fue enviado al correo {self.cliente.correo}')
 
         
-
-producto0 = Productos("Prueba")
+tienda1 = Tienda("Exito")
 
 camisa = Ropa("camisa", 3000, "M", "Rojo")
 buzo = Ropa("buzo", 5000, "M", "Negro")
 chaqueta = Ropa("chaqueta", 7000, "M", "Blanco")
 
 botas = Tenis("botas", 6000, "38", "Azul")
-tenis = Tenis("tenis", 6000, "38", "Naranja")
+tennis = Tenis("tenis", 6000, "38", "Naranja")
 chanclas = Tenis("chanclas", 6000, "38", "Azul")
 
+tienda1.agregar_productos(camisa)
+tienda1.agregar_productos(buzo)
+tienda1.agregar_productos(botas)
+tienda1.agregar_productos(tennis)
+tienda1.crear_producto()
 
-print("Ingrese su nombre y correo para crearle su carrito:")
-nombreNuevo = input("Nombre: ")
-correoNuevo = input("Correo: ")
-clienteNuevo = cliente(nombreNuevo, correoNuevo)
+tienda1.mostrar_productos()
+
+cliente1 = cliente("mico", "correo")
 
 
         
