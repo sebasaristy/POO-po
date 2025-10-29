@@ -49,7 +49,7 @@ class Tienda:
                 nProducto = Ropa(nNombre, nPrecio, nTalla, nColor)
                 print(f'El producto ha sido creado exitosamente. ({nProducto.nombre.capitalize()})')   
             elif categoria == "tenis":
-                nTalla = int(input("Ingrese la talla (numeros): "))
+                nTalla = float(input("Ingrese la talla (numeros): "))
                 nProducto = Tenis(nNombre, nPrecio, nTalla, nColor)
                 print(f'El producto ha sido creado exitosamente. ({nProducto.nombre.capitalize()})')
             else:
