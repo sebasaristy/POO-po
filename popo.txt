@@ -1,0 +1,3 @@
+ Auto, 123, Chevrole, Rojo, 5000
+ Camion, 143, renau, azul, 6000
+ Moto, 654, Kawa, niche, 2000

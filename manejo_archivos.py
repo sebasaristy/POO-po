@@ -51,3 +51,15 @@ estudiante3 = Estudiantes("Juana", 2.5)
 poo.agregar_estudiante(estudiante3)
 poo.cargar_desde_archivo()
 poo.mostrar_estudiantes()
+
+def cargar_medios_de_transporte(self):
+        with open("transportes.txt", "r") as f:
+            for linea in f:
+                linea = linea.strip().split(",")
+                if linea[0] == "Bicicleta":
+                    self.transportes.append(Bicicleta(int(linea[1]), int(linea[2]), float(linea[3])))
+                elif linea[0] == "Moto":
+                    self.transportes.append(Moto(int(linea[1]), int(linea[2]), float(linea[3])))
+                elif linea[0] == "Furgoneta":
+                    self.transportes.append(Furgoneta(int(linea[1]), int(linea[2]), float(linea[3])))
+    

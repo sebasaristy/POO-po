@@ -1,5 +1,5 @@
 import pytest
-from proyectoPoo import Productos, Ropa, Tenis, Tienda, Cliente, Carrito, Pedido
+from tallerMico.proyecto.proyectoPoo import Productos, Ropa, Tenis, Tienda, Cliente, Carrito, Pedido
 
 def test_creacion_ropa():
     p = Ropa("Camisa", 5000, "M", "Rojo")
