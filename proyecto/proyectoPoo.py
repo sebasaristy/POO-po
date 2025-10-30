@@ -2,7 +2,8 @@ import random
 
 
 class Productos:
-    def __init__(self, nombre, precio, talla, color):
+    def __init__(self, tipo, nombre, precio, talla, color):
+        self.tipo = tipo
         self.nombre = nombre 
         self.precio = precio
         self.talla = talla
@@ -12,12 +13,12 @@ class Productos:
        return f'{self.nombre.capitalize()}, Precio: {self.precio}, Talla: {self.talla}, Color: {self.color}'
 
 class Ropa(Productos):
-    def __init__(self, nombre, precio, talla, color):
-        super().__init__(nombre, precio, talla, color)
+    def __init__(self, tipo, nombre, precio, talla, color):
+        super().__init__(tipo, nombre, precio, talla, color)
 
 class Tenis(Productos):
-    def __init__(self, nombre, precio, talla, color):
-        super().__init__(nombre, precio, talla, color)
+    def __init__(self, tipo, nombre, precio, talla, color):
+        super().__init__(tipo, nombre, precio, talla, color)
         
 class Tienda:
     def __init__(self, nombre):
@@ -29,6 +30,8 @@ class Tienda:
             raise TypeError("Solo se agregan objetos de tipo Producto")
         self.listaProductos.append(producto)
         print(f'El producto "{producto.nombre}" ha sido agregado exitosamente')
+        with open(self.nombre, "a") as f:
+            f.write(f'{producto.tipo}, {producto.nombre}, {producto.precio}, {producto.talla}, {producto.color}\n')
 
     def mostrar_productos(self):
         if not self.listaProductos:
@@ -46,11 +49,11 @@ class Tienda:
 
             if categoria == "ropa":
                 nTalla = input("Ingrese la talla (S/M/L): ").capitalize()
-                nProducto = Ropa(nNombre, nPrecio, nTalla, nColor)
+                nProducto = Ropa(categoria, nNombre, nPrecio, nTalla, nColor)
                 print(f'El producto ha sido creado exitosamente. ({nProducto.nombre.capitalize()})')   
             elif categoria == "tenis":
                 nTalla = float(input("Ingrese la talla (numeros): "))
-                nProducto = Tenis(nNombre, nPrecio, nTalla, nColor)
+                nProducto = Tenis(categoria, nNombre, nPrecio, nTalla, nColor)
                 print(f'El producto ha sido creado exitosamente. ({nProducto.nombre.capitalize()})')
             else:
                 print(categoria)
@@ -59,6 +62,25 @@ class Tienda:
             self.listaProductos.append(nProducto)
         except ValueError:
             print("Error en los numeros ingresados")
+        
+    def cargar_productos(self):
+        self.listaProductos = []
+        with open(self.nombre, "r") as f:
+            for linea in f:
+                linea = linea.strip().split(",")
+                if linea[0] == "ropa":
+                    self.listaProductos.append(Ropa(str(linea[0]), str(linea[1]), int(linea[2]), str(linea[3]), str(linea[4])))
+                elif linea[0] == "tenis":
+                    self.listaProductos.append(Tenis(str(linea[0]), str(linea[1]), int(linea[2]), int(linea[3]), str(linea[4])))
+
+    def guardar_en_archivo(self):
+        try:
+            with open(self.nombre, "w") as f:
+                for v in self.listaProductos:
+                    f.write(f'{v.categoria}, {v.nombre}, {v.precio}, {v.talla}, {v.color}\n')
+            print(f'Productos agregados con exito')
+        except:
+            print(f'Error al guardar')
 
 class Carrito: 
     def __init__(self):
@@ -115,22 +137,22 @@ class Pedido:
         print(f'Factura enviada al correo: {self.cliente.correo}')
 
 if __name__ == "__main__": #pragma: no cover
-    tienda1 = Tienda("Exito")
+    tienda1 = Tienda("Exito.txt")
 
-    producto1 = Ropa("camisa", 3000, "M", "Rojo")
-    producto2 = Ropa("buzo", 5000, "M", "Negro")
-    producto3 = Ropa("chaqueta", 7000, "M", "Blanco")
+    producto1 = Ropa("ropa","camisa", 3000, "M", "Rojo")
+    producto2 = Ropa("ropa", "buzo", 5000, "M", "Negro")
+    producto3 = Ropa("ropa", "chaqueta", 7000, "M", "Blanco")
 
-    producto4 = Tenis("botas", 6000, 38, "Azul")
-    producto5 = Tenis("tenis", 6000, 38, "Naranja")
-    producto6 = Tenis("chanclas", 6000, 38, "Azul")
+    producto4 = Tenis("tenis","botas", 6000, 38, "Azul")
+    producto5 = Tenis("tenis", "tenis", 6000, 38, "Naranja")
+    producto6 = Tenis("tenis","chanclas", 6000, 38, "Azul")
 
     tienda1.agregar_productos(producto1)
     tienda1.agregar_productos(producto2)
     tienda1.agregar_productos(producto5)
     tienda1.agregar_productos(producto4)
-    tienda1.crear_producto()
-    tienda1.mostrar_productos()
+    tienda1.cargar_productos()
+    tienda1.guardar_en_archivo
 
 
     cliente1 = Cliente("mico", "correo")

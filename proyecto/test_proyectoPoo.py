@@ -1,28 +1,29 @@
 import pytest
-from tallerMico.proyecto.proyectoPoo import Productos, Ropa, Tenis, Tienda, Cliente, Carrito, Pedido
+from proyectoPoo import Productos, Ropa, Tenis, Tienda, Cliente, Carrito, Pedido
 
 def test_creacion_ropa():
-    p = Ropa("Camisa", 5000, "M", "Rojo")
+    p = Ropa("ropa","Camisa", 5000, "M", "Rojo")
+    assert p.tipo == "ropa"
     assert p.nombre == "Camisa"
     assert p.precio == 5000
     assert p.talla == "M"
     assert p.color == "Rojo"
 
 def test_creacion_tenis():
-    t = Tenis("Tenis", 2500, 42, "Blanco")
+    t = Tenis("tenis","Tenis", 2500, 42, "Blanco")
     assert isinstance(t, Productos)
     assert t.talla == 42
 
 def test_mostrar_info():
-    p = Ropa("Camisa", 5000, "M", "Rojo")
+    p = Ropa("ropa","Camisa", 5000, "M", "Rojo")
     texto = p.mostrar_info()
     assert "Camisa" in texto
     assert "Rojo" in texto
     
 def test_agregar_mostrar_productos():
     tienda = Tienda("Moda")
-    p1 = Ropa("Camisa", 3000, "S", "Azul")
-    p2 = Tenis("Adidas", 2000, 41, "Negro")
+    p1 = Ropa("ropa","Camisa", 3000, "S", "Azul")
+    p2 = Tenis("tenis","Adidas", 2000, 41, "Negro")
     tienda.agregar_productos(p1)
     tienda.agregar_productos(p2)
     tienda.mostrar_productos()
@@ -32,8 +33,8 @@ def test_agregar_mostrar_productos():
     
 def test_carrito_agregar():
     carrito = Carrito()
-    p1 = Ropa("Camisa", 5000, "S", "Rojo")
-    p2 = Tenis("Puma", 10000, 41, "Gris")
+    p1 = Ropa("ropa","Camisa", 5000, "S", "Rojo")
+    p2 = Tenis("tenis","Puma", 10000, 41, "Gris")
     carrito.agregar_producto(p1)
     carrito.agregar_producto(p2)
     assert len(carrito.listaproductos) == 2
@@ -41,8 +42,8 @@ def test_carrito_agregar():
 
 def test_carrito_eliminar():
     carrito = Carrito()
-    p1 = Ropa("Camisa", 5000, "S", "Rojo")
-    p2 = Tenis("Puma", 10000, 41, "Gris")
+    p1 = Ropa("ropa","Camisa", 5000, "S", "Rojo")
+    p2 = Tenis("tenis","Puma", 10000, 41, "Gris")
     carrito.agregar_producto(p1)
     carrito.agregar_producto(p2)
 
@@ -59,8 +60,8 @@ def test_cliente_carrito():
 
 def test_pedido_con_total():
     cliente = Cliente("mico", "correo@mi.com")
-    p1 = Ropa("Camisa", 5000, "S", "Rojo")
-    p2 = Tenis("Puma", 10000, 41, "Gris")
+    p1 = Ropa("ropa","Camisa", 5000, "S", "Rojo")
+    p2 = Tenis("tenis","Puma", 10000, 41, "Gris")
     cliente.carrito.agregar_producto(p1)
     cliente.carrito.agregar_producto(p2)
     pedido = Pedido(cliente)
@@ -79,7 +80,7 @@ def test_carrito_vacio():
 
 def test_eliminar_producto_inexistente():
     carrito = Carrito()
-    p1 = Ropa("Camisa", 5000, "S", "Rojo")
+    p1 = Ropa("ropa","Camisa", 5000, "S", "Rojo")
     carrito.agregar_producto(p1)
     carrito.eliminar_producto("Pantalon")
     assert len(carrito.listaproductos) == 1
@@ -87,8 +88,8 @@ def test_eliminar_producto_inexistente():
 
 def test_mostrar_factura():
     cliente = Cliente("Mico", "miquito")
-    p1 = Ropa("Camisa", 5000, "S", "Rojo")
-    p2 = Tenis("Puma", 10000, 41, "Gris")
+    p1 = Ropa("ropa", "Camisa", 5000, "S", "Rojo")
+    p2 = Tenis("tenis", "Puma", 10000, 41, "Gris")
     cliente.carrito.agregar_producto(p1)
     cliente.carrito.agregar_producto(p2)
     pedido = Pedido(cliente)
@@ -99,9 +100,9 @@ def test_mostrar_factura():
 def test_agregar_varios_productos():
     tienda = Tienda("MicoStore")
     productos = [
-        Ropa("Buzo", 6000, "L", "Negro"),
-        Tenis("Nike", 3000, 42, "Rojo"),
-        Ropa("Pantalon", 8000, "M", "Beige"),
+        Ropa("ropa","Buzo", 6000, "L", "Negro"),
+        Tenis("tenis", "Nike", 3000, 42, "Rojo"),
+        Ropa("ropa", "Pantalon", 8000, "M", "Beige"),
     ]
     for p in productos: 
         tienda.agregar_productos(p)
@@ -116,7 +117,8 @@ def test_pedido_carrito_vacio():
     assert pedido.total == 0
 
 def test_tipo_datos():
-   p1 = Ropa("Camisa", 5000, "S", "Rojo")
+   p1 = Ropa("ropa", "Camisa", 5000, "S", "Rojo")
+   assert isinstance(p1.tipo, str)
    assert isinstance(p1.nombre, str)
    assert isinstance(p1.precio, int)
    assert isinstance(p1.talla, str)
