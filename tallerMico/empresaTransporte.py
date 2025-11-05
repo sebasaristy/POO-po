@@ -79,4 +79,3 @@ mico.agregar_vehiculo(camion1)
 mico.agregar_vehiculo(moto1)"""
 
 mico.cargar_vehiculos()
-print(mico.listaVehiculo)
